@@ -33,7 +33,7 @@ const Home = () => {
       if (res?.data?.user?.logout) {
         dispatch(logout());
         navigate("/verifyEmail");
-        // setSocketConnection(null)
+        setSocketConnection(null)
       }
       if (res?.data?.success) {
         dispatch(setUser(res?.data?.user));

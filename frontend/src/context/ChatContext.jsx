@@ -7,8 +7,9 @@ const ChatContextProvider = ({ children }) => {
   const [uploading, setUploading] = useState(false);
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
-  const [socketConnection,setSocketConnection]=useState(null)
-  const backendUrl = import.meta.env.VITE_APP_BACKEND_URL;
+  const [socketConnection, setSocketConnection] = useState(null);
+  const backendUrl =
+    import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:4000";
 
   const value = {
     loading,
@@ -18,7 +19,10 @@ const ChatContextProvider = ({ children }) => {
     setToken,
     user,
     setUser,
-    uploading, setUploading,socketConnection,setSocketConnection
+    uploading,
+    setUploading,
+    socketConnection,
+    setSocketConnection,
   };
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };

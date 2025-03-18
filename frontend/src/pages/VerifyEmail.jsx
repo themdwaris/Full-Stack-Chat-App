@@ -17,9 +17,13 @@ const VerifyEmail = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(`${backendUrl}/api/user/verifyEmail`, {
-        email,
-      });
+      const res = await axios.post(
+        `${backendUrl}/api/user/verifyEmail`,
+        {
+          email,
+        },
+        
+      );
       if (res?.data?.success) {
         setUser(res?.data?.user);
         // console.log(res.data);
@@ -39,10 +43,11 @@ const VerifyEmail = () => {
   };
 
   useEffect(() => {
-    if (token && localStorage.getItem("chatUserToken")) {
+    const localToken = localStorage.getItem("chatUserToken");
+    if (token && localToken) {
       navigate("/");
     }
-  }, [token, localStorage.getItem("chatUserToken")]);
+  }, [token]);
 
   return (
     <div className="w-full h-[80vh] md:h-screen flex items-center justify-center px-5">
