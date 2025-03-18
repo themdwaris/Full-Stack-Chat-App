@@ -9,7 +9,7 @@ const ChatContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [socketConnection, setSocketConnection] = useState(null);
   const backendUrl =
-    import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:4000";
+    import.meta.env.VITE_APP_BACKEND_URL;
 
   const value = {
     loading,
