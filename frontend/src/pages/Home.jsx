@@ -50,8 +50,7 @@ const Home = () => {
   }, [user?.token]);
 
   useEffect(() => {
-    const socketConnection = io(
-      "https://chat-app-backend-beta-orpin.vercel.app",
+    const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL,
       {
         auth: {
           token: localStorage.getItem("chatUserToken"),
