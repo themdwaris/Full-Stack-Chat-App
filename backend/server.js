@@ -13,8 +13,13 @@ connectDB()
 
 //middleware
 app.use(express.json())
-app.use(cors())
 app.use(cookieParser())
+
+app.use(cors({
+    origin: "https://chatappbymd.vercel.app", // Frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  }));
 
 //api endpoint 
 app.use("/api/user",userRouter)
@@ -23,8 +28,6 @@ app.use("/api/user",userRouter)
 app.get("/",(req,res)=>{
     res.json({message:"Hello from backend"})
 })
-
-
 
 server.listen(PORT,()=>{
     console.log("Server started");
