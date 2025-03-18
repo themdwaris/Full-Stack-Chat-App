@@ -17,6 +17,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
   // console.log(user);
 
   const getCurrentUser = async () => {
@@ -33,6 +34,7 @@ const Home = () => {
       if (res?.data?.success) {
         dispatch(setUser(res?.data?.user));
       }
+      setLoading(false);
     } catch (error) {
       console.log("Failed to get user detail:", error);
       toast.error(error.message);
@@ -43,23 +45,22 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const localToken = localStorage.getItem("chatUserToken");
-    if (!user?.token && !localToken) {
-      navigate("verifyEmail");
+    if (!loading) {
+      const localToken = localStorage.getItem("chatUserToken");
+      if (!user?.token && !localToken) {
+        navigate("verifyEmail");
+      }
     }
-  }, [user?.token]);
+  }, [user?.token, loading]);
 
   useEffect(() => {
-    const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL,
-      {
-        auth: {
-          token: localStorage.getItem("chatUserToken"),
-        },
-        withCredentials: true, // Make sure you add this line
-        transports: ["websocket"], // Optional: Force WebSocket transport
-       
-      }
-    );
+    const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL, {
+      auth: {
+        token: localStorage.getItem("chatUserToken"),
+      },
+      withCredentials: true, // Make sure you add this line
+      transports: ["websocket"], // Optional: Force WebSocket transport
+    });
     socketConnection.on("onlineUser", (data) => {
       dispatch(setOnlineUser(data));
     });
