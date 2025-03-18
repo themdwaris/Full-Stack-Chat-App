@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://chatappbymd.vercel.app", 
+    origin: "https://chatappbymd.vercel.app",
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -111,12 +111,11 @@ io.on("connection", async (socket) => {
     );
 
     // send conversation
-    const conversationSender = await getConversation(data?.sender)
-    const conversationReceiver = await getConversation(data?.receiver)
+    const conversationSender = await getConversation(data?.sender);
+    const conversationReceiver = await getConversation(data?.receiver);
 
     io.to(data?.sender).emit("conversation", conversationSender);
     io.to(data?.receiver).emit("conversation", conversationReceiver);
-
   });
 
   // sidebar
@@ -124,12 +123,12 @@ io.on("connection", async (socket) => {
     if (!mongoose.Types.ObjectId.isValid(currentUserId)) {
       return socket.emit("error", "Invalid user ID");
     }
-    const conversation = await getConversation(currentUserId)
-    socket.emit('conversation',conversation)
+    const conversation = await getConversation(currentUserId);
+    socket.emit("conversation", conversation);
   });
 
   // seen
-  socket.on('seen',async(messageByUserId)=>{
+  socket.on("seen", async (messageByUserId) => {
     let conversation = await chatModel.findOne({
       $or: [
         {
@@ -140,17 +139,20 @@ io.on("connection", async (socket) => {
       ],
     });
 
-    const conversationId = conversation?.messages||[]
+    const conversationId = conversation?.messages || [];
 
-    const updateMessages = await messageModel.updateMany({_id:{"$in":conversationId},messageByUserId:messageByUserId},{"$set":{seen:true}})
+    const updateMessages = await messageModel.updateMany(
+      { _id: { $in: conversationId }, messageByUserId: messageByUserId },
+      { $set: { seen: true } }
+    );
 
     // send conversation
-    const conversationSender = await getConversation(user?._id?.toString())
-    const conversationReceiver = await getConversation(messageByUserId)
+    const conversationSender = await getConversation(user?._id?.toString());
+    const conversationReceiver = await getConversation(messageByUserId);
 
     io.to(user?._id?.toString()).emit("conversation", conversationSender);
     io.to(messageByUserId).emit("conversation", conversationReceiver);
-  })
+  });
 
   //disconnect
   socket.on("disconnect", () => {

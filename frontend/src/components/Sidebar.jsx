@@ -114,7 +114,7 @@ const Sidebar = () => {
             onClick={() => {
               dispatch(logout());
               // navigate("/verifyEmail")
-              setSocketConnection(null)
+              // setSocketConnection(null)
               localStorage.removeItem("chatUserToken");
             }}
           >
