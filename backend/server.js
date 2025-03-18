@@ -13,10 +13,11 @@ connectDB();
 
 //middleware
 app.use(cors({
-    origin: ["https://chatappbymd.vercel.app"], // Allowed Frontend URLs (Array form)
+    origin: "https://chatappbymd.vercel.app",  // Make sure it's your exact frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true, // Allow credentials (cookies, headers, etc.)
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed Headers
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Set-Cookie"],
 }));
 app.use(express.json());
 app.use(cookieParser());
