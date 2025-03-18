@@ -33,7 +33,7 @@ const Home = () => {
       if (res?.data?.user?.logout) {
         dispatch(logout());
         navigate("/verifyEmail");
-        setSocketConnection(null)
+        // setSocketConnection(null)
       }
       if (res?.data?.success) {
         dispatch(setUser(res?.data?.user));
@@ -47,12 +47,12 @@ const Home = () => {
     getCurrentUser();
   }, []);
 
-  useEffect(() => {
-    const localToken = localStorage.getItem("chatUserToken")
-    if (!user?.token && !localToken) {
-      navigate("verifyEmail");
-    }
-  }, [user?.token]);
+  // useEffect(() => {
+  //   const localToken = localStorage.getItem("chatUserToken")
+  //   if (!user?.token && !localToken) {
+  //     navigate("verifyEmail");
+  //   }
+  // }, [user?.token]);
 
   useEffect(() => {
     const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL, {
