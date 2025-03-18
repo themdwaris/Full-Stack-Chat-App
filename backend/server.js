@@ -13,7 +13,7 @@ connectDB()
 
 //middleware
 app.use(express.json())
-app.use(cors({origin:"https://chatappbymd.vercel.app",credentials:true}))
+app.use(cors())
 app.use(cookieParser())
 
 //api endpoint 
