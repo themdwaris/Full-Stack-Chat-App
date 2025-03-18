@@ -19,8 +19,6 @@ const io = new Server(server, {
   cors: {
     origin: ["https://chatappbymd.vercel.app","http://localhost:5173"], // Allow all domains
     credentials:true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
 }
 });
 
