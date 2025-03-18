@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-// import { userChatContext } from "../context/chatContext";
+
 import io from "socket.io-client";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -55,6 +55,8 @@ const Home = () => {
         auth: {
           token: localStorage.getItem("chatUserToken"),
         },
+        withCredentials: true, // Make sure you add this line
+        transports: ["websocket"], // Optional: Force WebSocket transport
        
       }
     );
