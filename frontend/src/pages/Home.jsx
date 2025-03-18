@@ -34,8 +34,8 @@ const Home = () => {
       }
       if (res?.data?.success) {
         dispatch(setUser(res?.data?.user));
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       console.log("Failed to get user detail:", error);
       toast.error(error.message);
