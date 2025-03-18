@@ -12,15 +12,16 @@ const PORT = process.env.PORT || 4000;
 connectDB();
 
 //middleware
-app.use(express.json());
-app.use(cookieParser());
-
 app.use(cors({
     origin: ["https://chatappbymd.vercel.app"], // Allowed Frontend URLs (Array form)
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, // Allow credentials (cookies, headers, etc.)
     allowedHeaders: ["Content-Type", "Authorization"], // Allowed Headers
 }));
+app.use(express.json());
+app.use(cookieParser());
+
+
 
 
 //api endpoint
