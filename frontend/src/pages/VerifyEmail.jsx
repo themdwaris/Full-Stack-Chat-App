@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import userProfile from "../assets/userProfile.jpeg";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 
 import Loader from "../components/Loader";
 import { useSelector } from "react-redux";

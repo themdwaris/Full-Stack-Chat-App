@@ -12,14 +12,14 @@ import Overlay from "./Overlay";
 import UpdateUserDeatils from "./UpdateUserDeatils";
 import AllUsers from "./AllUsers";
 import { Link } from "react-router-dom";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 
 const Sidebar = () => {
   const user = useSelector((state) => state?.user);
   // const socketConnection = useSelector(
   //   (state) => state?.user?.socketConnection
   // );
-  const {socketConnection} = userChatContext()
+  const {socketConnection,setSocketConnection} = userChatContext()
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [users, setUsers] = useState([]);
@@ -114,6 +114,7 @@ const Sidebar = () => {
             onClick={() => {
               dispatch(logout());
               // navigate("/verifyEmail")
+              setSocketConnection(null)
               localStorage.removeItem("chatUserToken");
             }}
           >

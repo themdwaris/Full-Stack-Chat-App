@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
 import Avatar from "./Avatar";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 import Loader from "./Loader";
 import axios from "axios";
 import { toast } from "react-toastify";

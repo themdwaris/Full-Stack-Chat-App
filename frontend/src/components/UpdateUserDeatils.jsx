@@ -5,7 +5,7 @@ import { MdOutlineImageNotSupported } from "react-icons/md";
 import userProfile from "../assets/userProfile.jpeg";
 import uploadFile from "../helpers/uploadFile";
 import axios from "axios";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/userSlice";

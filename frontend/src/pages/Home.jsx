@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { userChatContext } from "../context/chatContext";
+// import { userChatContext } from "../context/chatContext";
 import io from "socket.io-client";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -13,6 +13,7 @@ import {
 } from "../store/userSlice";
 import Sidebar from "../components/Sidebar";
 import chat2 from "../assets/chat2.png";
+import { userChatContext } from "../context/ChatContext.jsx";
 
 const Home = () => {
   const { backendUrl,setSocketConnection, } = userChatContext();
@@ -32,6 +33,7 @@ const Home = () => {
       if (res?.data?.user?.logout) {
         dispatch(logout());
         navigate("/verifyEmail");
+        setSocketConnection(null)
       }
       if (res?.data?.success) {
         dispatch(setUser(res?.data?.user));

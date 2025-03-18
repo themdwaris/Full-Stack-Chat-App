@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 import Loader from "../components/Loader";
 import Avatar from "../components/Avatar";
 import { useDispatch } from "react-redux";

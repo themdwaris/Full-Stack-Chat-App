@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Avatar from "./Avatar";
 import uploadFile from "../helpers/uploadFile.js";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 import ImageLoader from "./ImageLoader.jsx";
 import moment from "moment";
 

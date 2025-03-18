@@ -4,12 +4,12 @@ import router from "./routes/index.jsx";
 import { Provider } from "react-redux";
 import "./index.css";
 import store from "./store/store.js";
-import { ChatContextProvider } from "./context/chatContext.jsx";
+import { ChatContextProvider } from "./context/ChatContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <ChatContextProvider>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ChatContextProvider>
       <RouterProvider router={router} />
-    </Provider>
-  </ChatContextProvider>
+    </ChatContextProvider>
+  </Provider>
 );

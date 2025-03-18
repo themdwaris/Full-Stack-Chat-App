@@ -6,7 +6,7 @@ import { MdOutlineImageNotSupported } from "react-icons/md";
 import uploadFile from "../helpers/uploadFile";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { userChatContext } from "../context/chatContext";
+import { userChatContext } from "../context/ChatContext.jsx";
 import Loader from "../components/Loader";
 
 const Register = () => {
