@@ -48,10 +48,11 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (!user?.token && !localStorage.getItem("chatUserToken")) {
+    const localToken = localStorage.getItem("chatUserToken")
+    if (!user?.token && !localToken) {
       navigate("verifyEmail");
     }
-  }, [user?.token, localStorage.getItem("chatUserToken")]);
+  }, [user?.token]);
 
   useEffect(() => {
     const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL, {
