@@ -11,7 +11,11 @@ const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: process.env.FRONTEND_URL, credentials: true },
+  cors: {
+    origin: "https://chatappbymd.vercel.app",  // Your frontend URL
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
 
 const onlineUser = new Set();
