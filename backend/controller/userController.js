@@ -97,6 +97,7 @@ const verifyPassword = async (req, res) => {
 const userDetails = async (req, res) => {
   try {
     const token = req.cookies.token || "";
+    // const token = req?.body?.token
    
     const user = await getUserDetails(token);
     if (!user) {

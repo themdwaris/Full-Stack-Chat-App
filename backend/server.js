@@ -13,7 +13,7 @@ connectDB();
 
 //middleware
 app.use(cors({
-    origin: "https://chatappbymd.vercel.app",  // Make sure it's your exact frontend URL
+    origin: ["https://chatappbymd.vercel.app","http://localhost:5173"],  // Make sure it's your exact frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],

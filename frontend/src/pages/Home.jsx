@@ -5,18 +5,13 @@ import io from "socket.io-client";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  logout,
-  setOnlineUser,
-  
-  setUser,
-} from "../store/userSlice";
+import { logout, setOnlineUser, setUser } from "../store/userSlice";
 import Sidebar from "../components/Sidebar";
 import chat2 from "../assets/chat2.png";
 import { userChatContext } from "../context/ChatContext.jsx";
 
 const Home = () => {
-  const { backendUrl,setSocketConnection, } = userChatContext();
+  const { backendUrl, setSocketConnection } = userChatContext();
   const user = useSelector((state) => state?.user);
   const [path, setPath] = useState(false);
   const dispatch = useDispatch();
@@ -33,7 +28,7 @@ const Home = () => {
       if (res?.data?.user?.logout) {
         dispatch(logout());
         navigate("/verifyEmail");
-        setSocketConnection(null)
+        setSocketConnection(null);
       }
       if (res?.data?.success) {
         dispatch(setUser(res?.data?.user));
@@ -48,24 +43,29 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const localToken = localStorage.getItem("chatUserToken")
+    const localToken = localStorage.getItem("chatUserToken");
     if (!user?.token && !localToken) {
       navigate("verifyEmail");
     }
   }, [user?.token]);
 
   useEffect(() => {
-    const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL, {
-      auth: {
-        token: localStorage.getItem("chatUserToken"),
-      },
-    });
+    const socketConnection = io(
+      "https://chat-app-backend-beta-orpin.vercel.app",
+      {
+        auth: {
+          token: localStorage.getItem("chatUserToken"),
+        },
+        withCredentials: true,
+        transports: ["websocket"],
+      }
+    );
     socketConnection.on("onlineUser", (data) => {
       dispatch(setOnlineUser(data));
     });
 
     // dispatch(setSocketConnection(socketConnection));
-    setSocketConnection(socketConnection)
+    setSocketConnection(socketConnection);
 
     return () => socketConnection.disconnect();
   }, []);
@@ -84,7 +84,7 @@ const Home = () => {
       {/* Section */}
       <div className={`${path && "hidden"} lg:block`}>
         <Outlet />
-        {path&& (
+        {path && (
           <div className="hidden lg:flex h-screen flex-col items-center justify-center ">
             <img src={chat2} alt="logo" className="w-[200px] object-cover" />
             <h1 className="text-[18px] md:text-2xl -mt-6 text-slate-100">

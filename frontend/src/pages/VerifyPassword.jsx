@@ -9,12 +9,16 @@ import { useDispatch } from "react-redux";
 import { setToken } from "../store/userSlice";
 
 const VerifyPassword = () => {
-  const { loading, setLoading, backendUrl } = userChatContext();
+  const { loading, setLoading, backendUrl,user } = userChatContext();
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch()
-
+ 
+//  console.log(user);
+//  console.log(state);
+ 
+ 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
