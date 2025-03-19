@@ -64,9 +64,11 @@ const Home = () => {
     socketConnection.on("connect", () => {
       console.log("Socket connected successfully!");
     });
+    
     socketConnection.on("connect_error", (error) => {
       console.error("Socket connection failed:", error);
     });
+
     socketConnection.on("onlineUser", (data) => {
       dispatch(setOnlineUser(data));
     });
