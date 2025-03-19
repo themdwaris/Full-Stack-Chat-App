@@ -57,8 +57,8 @@ const Home = () => {
       auth: {
         token: localStorage.getItem("chatUserToken"),
       },
-      withCredentials:true,
-      transports:['websocket','polling']
+      // withCredentials:true,
+      // transports:['websocket','polling']
     });
 
     socketConnection.on("connect", () => {
@@ -66,7 +66,7 @@ const Home = () => {
     });
 
     socketConnection.on("connect_error", (error) => {
-      console.error("Socket connection failed:::", error);
+      console.error("Socket connection failed::", error);
     });
 
     socketConnection.on("onlineUser", (data) => {

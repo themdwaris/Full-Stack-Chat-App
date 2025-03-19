@@ -29,7 +29,7 @@ const VerifyPassword = () => {
           password,
           userId: state?._id,
         },
-        { withCredentials: true }
+        // { withCredentials: true }
         
       );
       if (res?.data?.success) {
