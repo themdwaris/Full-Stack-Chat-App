@@ -24,12 +24,11 @@ const UpdateUserDeatils = ({ setEdit, user }) => {
     try {
       const res = await axios.post(`${backendUrl}/api/user/update`, data, {
         withCredentials: true,
-        headers:{'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app'}
       });
       if (res?.data?.success) {
         toast.success(res.data.message);
         dispatch(setUser(res?.data?.updatedUser));
-        setEdit(false)
+        setEdit(false);
       }
     } catch (error) {
       console.log("failed to update user details:", error);
@@ -72,7 +71,9 @@ const UpdateUserDeatils = ({ setEdit, user }) => {
     }
   }
 
-  useEffect(()=>{setAvatar(userr?.avatar)},[])
+  useEffect(() => {
+    setAvatar(userr?.avatar);
+  }, []);
   return (
     <div
       className="w-full bg-green-900 p-5 rounded-lg relative max-w-[400px] mx-auto"

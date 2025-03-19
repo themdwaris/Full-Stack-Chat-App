@@ -29,7 +29,7 @@ const VerifyPassword = () => {
           password,
           userId: state?._id,
         },
-        { withCredentials: true,headers:{'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app'} }
+        { withCredentials: true }
         
       );
       if (res?.data?.success) {

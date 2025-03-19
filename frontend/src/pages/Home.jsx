@@ -22,11 +22,9 @@ const Home = () => {
 
   const getCurrentUser = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await axios.get(`${backendUrl}/api/user/userdetails`, {
         withCredentials: true,
-        headers:{'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app'}
-       
       });
 
       if (res?.data?.user?.logout) {
@@ -48,12 +46,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-   
-      const localToken = localStorage.getItem("chatUserToken");
-      if (!user?.token && !localToken) {
-        navigate("verifyEmail");
-      }
-    
+    const localToken = localStorage.getItem("chatUserToken");
+    if (!user?.token && !localToken) {
+      navigate("verifyEmail");
+    }
   }, [user?.token]);
 
   useEffect(() => {
@@ -61,9 +57,12 @@ const Home = () => {
       auth: {
         token: localStorage.getItem("chatUserToken"),
       },
-      // withCredentials: true, // Make sure you add this line
-      
-      // transports: ["websocket"], // Optional: Force WebSocket transport
+      withCredentials:true,
+      transports:['websocket']
+    });
+
+    socketConnection.on("connect_error", (error) => {
+      console.error("Socket connection failed:", error);
     });
     socketConnection.on("onlineUser", (data) => {
       dispatch(setOnlineUser(data));

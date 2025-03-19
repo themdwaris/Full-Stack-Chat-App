@@ -77,8 +77,9 @@ const verifyPassword = async (req, res) => {
 
     const token = generateToken(user._id, user.email);
     const cookieOptions = {
-      http: true,
+      httpOnly: true,
       secure: true,
+      sameSite: "None"
     };
 
     res.cookie("token", token, cookieOptions);
@@ -118,8 +119,10 @@ const userDetails = async (req, res) => {
 const logout = async (req, res) => {
   try {
     const cookieOptions = {
-      http: true,
+      httpOnly: true,
       secure: true,
+      sameSite:'None',
+      maxAge:0
     };
     return res
       .cookie("token", "", cookieOptions)
@@ -133,7 +136,8 @@ const logout = async (req, res) => {
 
 const updateUserDetails = async (req, res) => {
   try {
-    const token = req.cookies.token || "";
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1] || "";
+
     const user = await getUserDetails(token);
     if (!user) return res.json({ message: "user not found", success: false });
 
