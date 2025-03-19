@@ -25,6 +25,9 @@ const Home = () => {
       setLoading(true)
       const res = await axios.get(`${backendUrl}/api/user/userdetails`, {
         withCredentials: true,
+        headers:{
+          'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app' || 'http://localhost:5173'
+        }
       });
 
       if (res?.data?.user?.logout) {

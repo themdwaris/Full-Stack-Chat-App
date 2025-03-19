@@ -23,7 +23,9 @@ const UpdateUserDeatils = ({ setEdit, user }) => {
     e.stopPropagation();
     try {
       const res = await axios.post(`${backendUrl}/api/user/update`, data, {
-        withCredentials: true,
+        withCredentials: true, headers:{
+          'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app' || 'http://localhost:5173'
+        }
       });
       if (res?.data?.success) {
         toast.success(res.data.message);
