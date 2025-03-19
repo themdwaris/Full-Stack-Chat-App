@@ -11,11 +11,6 @@ const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  // cors: {
-  //   origin: "http://localhost:5173",
-  //   methods: ["GET", "POST","PUT"],
-  //   credentials: true
-  // },
   cors: {
     origin: ["https://chatappbymd.vercel.app","http://localhost:5173"], // Allow all domains
     methods: ["GET", "POST","PUT"],

@@ -25,6 +25,7 @@ const Home = () => {
       setLoading(true)
       const res = await axios.get(`${backendUrl}/api/user/userdetails`, {
         withCredentials: true,
+        headers:{'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app'}
        
       });
 
@@ -47,13 +48,13 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (!loading) {
+   
       const localToken = localStorage.getItem("chatUserToken");
       if (!user?.token && !localToken) {
         navigate("verifyEmail");
       }
-    }
-  }, [user?.token, loading]);
+    
+  }, [user?.token]);
 
   useEffect(() => {
     const socketConnection = io(import.meta.env.VITE_APP_BACKEND_URL, {

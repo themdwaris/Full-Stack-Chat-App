@@ -20,9 +20,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-
-
-
 //api endpoint
 app.use("/api/user", userRouter);
 
