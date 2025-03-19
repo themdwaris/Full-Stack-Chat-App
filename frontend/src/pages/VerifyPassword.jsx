@@ -29,9 +29,8 @@ const VerifyPassword = () => {
           password,
           userId: state?._id,
         },
-        { withCredentials: true,headers:{
-          'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app' || 'http://localhost:5173'
-        } }
+        { withCredentials: true, }
+        
       );
       if (res?.data?.success) {
         dispatch(setToken(res?.data?.token))

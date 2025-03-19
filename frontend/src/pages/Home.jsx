@@ -17,7 +17,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   // console.log(user);
 
   const getCurrentUser = async () => {
@@ -25,9 +25,7 @@ const Home = () => {
       setLoading(true)
       const res = await axios.get(`${backendUrl}/api/user/userdetails`, {
         withCredentials: true,
-        headers:{
-          'Access-Control-Allow-Origin':'https://chatappbymd.vercel.app' || 'http://localhost:5173'
-        }
+       
       });
 
       if (res?.data?.user?.logout) {
@@ -62,7 +60,8 @@ const Home = () => {
       auth: {
         token: localStorage.getItem("chatUserToken"),
       },
-      withCredentials: true, // Make sure you add this line
+      // withCredentials: true, // Make sure you add this line
+      
       // transports: ["websocket"], // Optional: Force WebSocket transport
     });
     socketConnection.on("onlineUser", (data) => {
