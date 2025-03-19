@@ -17,7 +17,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   // console.log(user);
 
   const getCurrentUser = async () => {
