@@ -30,7 +30,8 @@ const io = new Server(server, {
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"], 
     credentials: true,
-  }
+  },
+  transports: ["websocket", "polling"]
 });
 
 const onlineUser = new Set();
@@ -39,6 +40,11 @@ io.on("connection", async (socket) => {
   console.log("User connected", socket?.id);
   const token = socket?.handshake?.auth?.token;
 
+  if (!token) {
+    console.log("Token not provided. Disconnecting socket...");
+    socket.disconnect();
+    return;
+  }
   // *************Current user details**************
   const user = await getUserDetails(token);
 
@@ -50,29 +56,31 @@ io.on("connection", async (socket) => {
   io.emit("onlineUser", Array.from(onlineUser));
 
   socket.on("message-page", async (userId) => {
-    // console.log("userId:", userId);
-    const userDetails = await userModel.findById(userId).select("-password");
-    const payload = {
-      _id: userDetails?._id,
-      name: userDetails?.name,
-      email: userDetails?.email,
-      avatar: userDetails?.avatar,
-      online: onlineUser.has(userId),
-    };
-    socket.emit("message-user", payload);
+    try {
+      const userDetails = await userModel.findById(userId).select("-password");
+      const payload = {
+        _id: userDetails?._id,
+        name: userDetails?.name,
+        email: userDetails?.email,
+        avatar: userDetails?.avatar,
+        online: onlineUser.has(userId),
+      };
+      socket.emit("message-user", payload);
 
-    // get previous messages
-    const getConversationMessage = await chatModel
-      .findOne({
-        $or: [
-          { sender: user?._id, receiver: userId },
-          { sender: userId, receiver: user?._id },
-        ],
-      })
-      .populate("messages")
-      .sort({ updatedAt: -1 });
-    socket.emit("message", getConversationMessage?.messages || []);
-    // console.log(getConversationMessage?.messages);
+      const getConversationMessage = await chatModel
+        .findOne({
+          $or: [
+            { sender: user?._id, receiver: userId },
+            { sender: userId, receiver: user?._id },
+          ],
+        })
+        .populate("messages")
+        .sort({ updatedAt: -1 });
+        
+      socket.emit("message", getConversationMessage?.messages || []);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
   });
 
   // new message
