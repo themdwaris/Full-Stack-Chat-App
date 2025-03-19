@@ -63,7 +63,7 @@ const Home = () => {
         token: localStorage.getItem("chatUserToken"),
       },
       withCredentials: true, // Make sure you add this line
-      transports: ["websocket"], // Optional: Force WebSocket transport
+      // transports: ["websocket"], // Optional: Force WebSocket transport
     });
     socketConnection.on("onlineUser", (data) => {
       dispatch(setOnlineUser(data));
