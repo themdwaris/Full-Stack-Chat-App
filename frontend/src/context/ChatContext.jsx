@@ -8,8 +8,9 @@ const ChatContextProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
   const [socketConnection, setSocketConnection] = useState(null);
-  const backendUrl =
-    import.meta.env.VITE_APP_BACKEND_URL;
+  // const backendUrl =
+  //   import.meta.env.VITE_APP_BACKEND_URL;
+  const backendUrl = "https://full-stack-chat-app-production.up.railway.app"
 
   const value = {
     loading,
