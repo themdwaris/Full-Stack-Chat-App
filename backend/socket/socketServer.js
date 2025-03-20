@@ -18,22 +18,7 @@ const io = new Server(server, {
   },
   transports: ["websocket", "polling"],
 });
-// const io = new Server(server, {
-//   cors: {
-//     origin: (origin, callback) => {
-//       const allowedOrigins = ["https://chatappbymd.vercel.app", "http://localhost:5173"];
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
-//   },
-//   transports: ["websocket", "polling"]
-// });
+
 
 const onlineUser = new Set();
 

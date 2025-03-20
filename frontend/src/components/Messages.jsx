@@ -150,7 +150,7 @@ const Messages = () => {
 
       {/* *******User all messages, conversations  */}
       <div
-        className="w-full h-[calc(100vh-140px)] overflow-x-hidden overflow-y-auto relative"
+        className="w-full h-[calc(100vh-170px)] lg:h-[calc(100vh-140px)] overflow-x-hidden overflow-y-auto relative"
         onClick={(e) => {
           e.stopPropagation();
           setMedia(false);

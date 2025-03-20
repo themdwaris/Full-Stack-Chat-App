@@ -17,19 +17,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
-// app.use(cors({
-//   origin: (origin, callback) => {
-//       const allowedOrigins = ["https://chatappbymd.vercel.app", "http://localhost:5173"];
-//       if (!origin || allowedOrigins.includes(origin)) {
-//           callback(null, true);
-//       } else {
-//           callback(new Error("Not allowed by CORS"));
-//       }
-//   },
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   allowedHeaders: ["Content-Type", "Authorization"], 
-//   credentials: true,
-// }));
+
 app.use(express.json());
 app.use(cookieParser());
 
