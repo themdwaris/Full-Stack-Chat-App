@@ -120,7 +120,7 @@ const Messages = () => {
   return (
     <div className="w-full">
       {/* **********Header************ */}
-      <header className="w-full h-[68px] sm:h-[69px] bg-slate-900 sticky top-0 border-b border-l border-slate-700 flex items-center justify-between px-3 lg:px-5 z-10">
+      <header className="w-full h-[68px] sm:h-[69px] bg-slate-900 sticky top-0 border-b lg:border-l border-slate-700 flex items-center justify-between px-3 lg:px-5 z-10">
         <div className="flex items-center gap-3 lg:gap-4">
           <Link to="/" className="lg:hidden">
             <IoArrowBack size={24} />
@@ -150,7 +150,7 @@ const Messages = () => {
 
       {/* *******User all messages, conversations  */}
       <div
-        className="w-full h-[calc(100vh-180px)] lg:h-[calc(100vh-140px)] overflow-x-hidden overflow-y-auto relative"
+        className="w-full h-[calc(100vh-185px)] lg:h-[calc(100vh-160px)] overflow-x-hidden overflow-y-auto relative"
         onClick={(e) => {
           e.stopPropagation();
           setMedia(false);
@@ -282,7 +282,7 @@ const Messages = () => {
       {/* ************Input bar / text bar*********** */}
 
       <form
-        className="w-full h-[70px] bg-transparent flex items-center justify-center gap-3 sticky top-0"
+        className="w-full h-[70px] flex items-center justify-center gap-3 sticky top-0 bottom-0"
         onSubmit={handleSendMessage}
       >
         <div className="relative w-[80%] flex items-center justify-center bg-white/10 rounded-full px-5">
