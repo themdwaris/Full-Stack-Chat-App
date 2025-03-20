@@ -120,7 +120,7 @@ const Messages = () => {
   return (
     <div className="w-full">
       {/* **********Header************ */}
-      <header className="w-full h-[60px] sm:h-[69px] bg-slate-900 sticky top-0 border-b border-l border-slate-700 flex items-center justify-between px-3 lg:px-5 z-10">
+      <header className="w-full h-[68px] sm:h-[69px] bg-slate-900 sticky top-0 border-b border-l border-slate-700 flex items-center justify-between px-3 lg:px-5 z-10">
         <div className="flex items-center gap-3 lg:gap-4">
           <Link to="/" className="lg:hidden">
             <IoArrowBack size={24} />
@@ -150,7 +150,7 @@ const Messages = () => {
 
       {/* *******User all messages, conversations  */}
       <div
-        className="w-full h-[calc(100vh-170px)] lg:h-[calc(100vh-140px)] overflow-x-hidden overflow-y-auto relative"
+        className="w-full h-[calc(100vh-180px)] lg:h-[calc(100vh-140px)] overflow-x-hidden overflow-y-auto relative"
         onClick={(e) => {
           e.stopPropagation();
           setMedia(false);
