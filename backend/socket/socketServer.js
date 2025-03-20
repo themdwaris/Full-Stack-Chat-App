@@ -10,29 +10,30 @@ import { getConversation } from "../helpers/getConversation.js";
 const app = express();
 
 const server = http.createServer(app);
-// const io = new Server(server, {
-//   cors: {
-//     origin: ["https://chatappbymd.vercel.app","http://localhost:5173"], // Allow all domains
-//     methods: ["GET", "POST","PUT"],
-//     credentials:true,
-// }
-// });
 const io = new Server(server, {
   cors: {
-    origin: (origin, callback) => {
-      const allowedOrigins = ["https://chatappbymd.vercel.app", "http://localhost:5173"];
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: ["https://chatappbymd.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"], 
     credentials: true,
   },
-  transports: ["websocket", "polling"]
+  transports: ["websocket", "polling"],
 });
+// const io = new Server(server, {
+//   cors: {
+//     origin: (origin, callback) => {
+//       const allowedOrigins = ["https://chatappbymd.vercel.app", "http://localhost:5173"];
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//   },
+//   transports: ["websocket", "polling"]
+// });
 
 const onlineUser = new Set();
 
@@ -76,7 +77,7 @@ io.on("connection", async (socket) => {
         })
         .populate("messages")
         .sort({ updatedAt: -1 });
-        
+
       socket.emit("message", getConversationMessage?.messages || []);
     } catch (error) {
       console.error("Error fetching messages:", error);

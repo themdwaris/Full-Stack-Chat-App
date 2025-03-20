@@ -57,8 +57,8 @@ const Home = () => {
       auth: {
         token: localStorage.getItem("chatUserToken"),
       },
-      // withCredentials:true,
-      // transports:['websocket','polling']
+      withCredentials:true,
+      transports:['websocket','polling']
     });
 
     socketConnection.on("connect", () => {

@@ -12,24 +12,24 @@ const PORT = process.env.PORT || 4000;
 connectDB();
 
 //middleware
-// app.use(cors({
-//     origin: ["https://chatappbymd.vercel.app","http://localhost:5173"],  // Make sure it's your exact frontend URL
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     credentials: true,
-// }));
 app.use(cors({
-  origin: (origin, callback) => {
-      const allowedOrigins = ["https://chatappbymd.vercel.app", "http://localhost:5173"];
-      if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-      } else {
-          callback(new Error("Not allowed by CORS"));
-      }
-  },
+  origin: ["https://chatappbymd.vercel.app", "http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"], 
   credentials: true,
 }));
+// app.use(cors({
+//   origin: (origin, callback) => {
+//       const allowedOrigins = ["https://chatappbymd.vercel.app", "http://localhost:5173"];
+//       if (!origin || allowedOrigins.includes(origin)) {
+//           callback(null, true);
+//       } else {
+//           callback(new Error("Not allowed by CORS"));
+//       }
+//   },
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"], 
+//   credentials: true,
+// }));
 app.use(express.json());
 app.use(cookieParser());
 
