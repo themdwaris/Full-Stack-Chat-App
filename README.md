@@ -121,7 +121,6 @@ npm start
 - **Chat Routes**
   - `POST /api/chat/`: Access or create one-to-one chat
   - `GET /api/chat/`: Fetch all chats
-  - `PUT /api/chat/groupadd`: Add user to group
 
 - **Message Routes**
   - `POST /api/message/`: Send message
