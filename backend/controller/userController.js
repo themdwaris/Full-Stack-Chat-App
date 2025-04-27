@@ -79,7 +79,7 @@ const verifyPassword = async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: true,
-      sameSite: "None"
+      sameSite: "none"
     };
 
     res.cookie("token", token, cookieOptions);
@@ -121,7 +121,7 @@ const logout = async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: true,
-      sameSite:'None',
+      sameSite:'none',
       maxAge:0
     };
     return res
